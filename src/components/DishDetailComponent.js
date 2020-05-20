@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
 class DishDetail extends Component {
-
     constructor(props) {
         super(props);
     
@@ -32,7 +31,7 @@ class DishDetail extends Component {
         const dispComments=comments.map((comment) => 
             <li key={comment.id}>
                 <p>{comment.comment}</p>
-                <p>-- {comment.author} , {comment.date}</p>
+                <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', date: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
             </li>
             );
 
@@ -47,20 +46,22 @@ class DishDetail extends Component {
     }
 
     render() {
-        if (this.props.selectedDish !=null){
-            const comments = this.props.selectedDish.comments;
+        if (this.props.dish !=null){
+            const comments = this.props.dish.comments;
             console.log(typeof(comments));
             return (
-                    <div className="row">
-                        <div className="col-12 col-md-5 m-1">
-                            {this.renderDish(this.props.selectedDish)}
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12 col-md-5 m-1">
+                                {this.renderDish(this.props.dish)}
+                            </div>
+                            <div className="col-12 col-md-5 m-1">
+                                <h4><strong>Comments</strong></h4>
+                                <ul className="list-unstyled">
+                                    {this.renderComments(comments)}
+                                </ul>
+                            </div>    
                         </div>
-                        <div className="col-12 col-md-5 m-1">
-                            <h4><strong>Comments</strong></h4>
-                            <ul className="list-unstyled">
-                                {this.renderComments(comments)}
-                            </ul>
-                        </div>    
                     </div>
             );
         }
