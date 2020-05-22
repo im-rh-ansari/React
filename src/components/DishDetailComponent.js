@@ -22,7 +22,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
         const dispComments=comments.map((comment) => 
             <li key={comment.id}>
                 <p>{comment.comment}</p>
-                <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', date: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
             </li>
             );
 
