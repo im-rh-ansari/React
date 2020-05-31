@@ -22,7 +22,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
             );
     }
 
-    function RenderComments({comments}) {
+    function RenderComments({comments, addComment, dishId}) {
         if(comments != null)
             return(
                 <div className="col-12 col-md-5 m-1">
@@ -37,7 +37,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
                             );
                         })}    
                     </ul>
-                    <CommentForm />
+                    <CommentForm dishId={dishId} addComment={addComment}/>
                 </div>
             );
             else
@@ -68,7 +68,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 
         handleSubmit(values) {
             this.toggleModal();
-            alert("Current state is: " + JSON.stringify(values));
+            this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
         }
 
         render() {
@@ -82,7 +82,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
                     <ModalBody>
                         <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
-                                <Label htmlFor="name" xs={12}>Comment</Label>
+                                <Label htmlFor="rating" xs={12}>Rating</Label>
                                 <Col xs={12}>
                                     <Control.select model=".rating" id="rating" name="rating" class="form-control">
                                         <option>1</option>
@@ -96,13 +96,13 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
                             <Row className="form-group">
                                 <Label htmlFor="name" xs={12}>Your Name</Label>
                                 <Col xs={12}>
-                                    <Control.text model=".name" id="name" name="name" placeholder="Your Name" class="form-control" 
+                                    <Control.text model=".author" id="author" name="author" placeholder="Your Name" class="form-control" 
                                     validators={{
                                         minLength: minLength(3), maxLength: maxLength(15)
                                     }} />
                                     <Errors
                                             className="text-danger"
-                                            model=".name"
+                                            model=".author"
                                             show="touched"
                                             messages={{
                                                 minLength: 'Must be > 2 characters',
@@ -112,7 +112,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
                                 </Col>
                             </Row>
                             <Row className="form-group">
-                                <Label htmlFor="name" xs={12}>Comment</Label>
+                                <Label htmlFor="comment" xs={12}>Comment</Label>
                                 <Col xs={12}>
                                     <Control.textarea model=".comment" id="comment" name="comment" rows="6" class="form-control" />
                                 </Col>
@@ -143,7 +143,9 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
                         </div>
                         <div className="row">
                             <RenderDish dish={props.dish} />
-                            <RenderComments comments = {props.comments} />
+                            <RenderComments comments = {props.comments} 
+                            addComment={props.addComment}
+                            dishId={props.dish.id}/>
                         </div>
                     </div>
             );
