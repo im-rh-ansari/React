@@ -1982,6 +1982,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+cross-fetch@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/cross-fetch/download/cross-fetch-2.1.0.tgz#7d4ea7e10a4f3bb73d5c2f0a3791ec3752d39b50"
+  integrity sha1-fU6n4QpPO7c9XC8KN5HsN1LTm1A=
+  dependencies:
+    node-fetch "2.1.1"
+    whatwg-fetch "2.0.3"
+
 cross-spawn@5.1.0, cross-spawn@^5.0.1, cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.npm.taobao.org/cross-spawn/download/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -5294,6 +5302,11 @@ no-case@^2.2.0:
   integrity sha1-YLgTOWvjmz8SiKTB7V0efSi0ZKw=
   dependencies:
     lower-case "^1.1.1"
+
+node-fetch@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npm.taobao.org/node-fetch/download/node-fetch-2.1.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnode-fetch%2Fdownload%2Fnode-fetch-2.1.1.tgz#369ca70b82f50c86496104a6c776d274f4e4a2d4"
+  integrity sha1-NpynC4L1DIZJYQSmx3bSdPTkotQ=
 
 node-forge@0.9.0:
   version "0.9.0"
